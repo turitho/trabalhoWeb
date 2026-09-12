@@ -1,0 +1,8 @@
+.paciente {
+    width: 70%;
+    margin: 1rem auto;
+    border: 3px solid gray;
+    padding: 2rem;    
+    border-radius: 20px;
+}
+
