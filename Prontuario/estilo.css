@@ -1,0 +1,65 @@
+.menu {
+    width: 70%;
+    margin: 1rem auto;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.opcao {
+    border: 3px solid gray;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.centro {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.tabela {
+    width: 90%;
+    margin: 1rem auto;
+    border-collapse: collapse;
+}
+
+.tabela th, .tabela td {
+    border: 1px solid gray;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.tabela th {
+    background-color: #eee;
+}
+
+/* Estilo para Formulários */
+.formulario {
+    width: 50%;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+
+.formulario label {
+    font-weight: bold;
+    display: block;
+    margin-top: 1rem;
+}
+
+.formulario input[type="text"], 
+.formulario textarea, 
+.formulario select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    box-sizing: border-box;
+}
+
+.formulario button {
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.5rem;
+    cursor: pointer;
+}
