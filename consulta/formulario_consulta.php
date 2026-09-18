@@ -1,5 +1,5 @@
 <?php
-  // Previne erro de variável indefinida ao abrir direto em "Nova Consulta"
+  include_once "gravidade_consulta.php";
   if(!isset($dados)){
       $dados = array('id' => '', 'data_hora' => '', 'diagnostico' => '', 'id_medico' => '', 'id_paciente' => '', 'gravidade' => '');
   }
@@ -31,10 +31,18 @@
             <label class='form-label'>ID do Paciente</label>
             <input class='form-control' type="text" id="id_paciente" name="id_paciente" value="<?php echo $dados['id_paciente']; ?>">
         </div>
+        
         <div class="mb-3">
             <label class='form-label'>Gravidade</label>
-            <input class='form-control' type="text" id="gravidade" name="gravidade" value="<?php echo $dados['gravidade']; ?>">
+            <select class='form-control' id="gravidade" name="gravidade">
+                <?php foreach (GravidadeConsulta::cases() as $g): ?>
+                    <option value="<?php echo $g->value; ?>" <?php echo ($dados['gravidade'] == $g->value) ? 'selected' : ''; ?>>
+                        <?php echo $g->value; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
         </div>
+
         <div class="mb-3">
             <label class='form-label'>Diagnóstico</label>
             <textarea rows='5' class='form-control' id="diagnostico" name="diagnostico"><?php echo $dados['diagnostico']; ?></textarea>
