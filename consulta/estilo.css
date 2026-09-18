@@ -1,0 +1,35 @@
+.menu {
+    width: 70%;
+    margin: 1rem auto;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.opcao {
+    border: 3px solid gray;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.centro {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.tabela {
+    width: 90%;
+    margin: 1rem auto;
+    border-collapse: collapse;
+}
+
+.tabela th, .tabela td {
+    border: 1px solid gray;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.tabela th {
+    background-color: #eee;
+}
