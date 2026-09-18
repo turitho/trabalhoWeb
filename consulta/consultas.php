@@ -1,80 +1,62 @@
 <?php
-
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-
     include "funcao.php";
-
-    $consultas = getConsultas();
-
 ?>
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Lista de Consultas</title>
-
-    <link rel="stylesheet" href="estilo.css">
-</head>
-
-<body>
-
-    <h1>Consultas</h1>
-
-    <div class="centro">
-        <a href="formulario_consulta.php">Nova Consulta</a>
-        |
-        <a href="index.php">Voltar</a>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Consultas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  </head>
+  <body class="container">
+    <div class='d-flex justify-content-between mt-3 mb-3'>
+      <h1>Consultas</h1>
+      <a class="btn btn-secondary align-self-center" href="index.php">Voltar</a>
     </div>
 
-    <table class="tabela">
+    <a class="btn btn-primary" href="formulario_consulta.php">Nova Consulta</a>
 
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Data/Hora</th>
-                <th>Paciente</th>
-                <th>Médico</th>
-                <th>Gravidade</th>
-                <th>Diagnóstico</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
+    <?php
+        $consultas = getConsultas();
 
-        <tbody>
-
-            <?php foreach ($consultas as $consulta): ?>
-
-                <tr>
-                    <td><?= $consulta['ID_Consulta'] ?></td>
-                    <td><?= $consulta['Data_Hora'] ?></td>
-                    <td><?= $consulta['Nome_Paciente'] ?></td>
-                    <td><?= $consulta['Nome_Medico'] ?></td>
-                    <td><?= $consulta['Gravidade'] ?></td>
-                    <td><?= $consulta['Diagnostico'] ?></td>
-                    <td>
-                        <a href="editar_consulta.php?id=<?= $consulta['ID_Consulta'] ?>">
-                            Editar
-                        </a>
-                        |
-                        <a href="excluir_consulta.php?id=<?= $consulta['ID_Consulta'] ?>"
-                           onclick="return confirm('Excluir esta consulta?');">
-                            Excluir
-                        </a>
-                    </td>
-                </tr>
-
-            <?php endforeach; ?>
-
-        </tbody>
-
-    </table>
-
-</body>
-
+        foreach($consultas as $consulta) {
+            $id = $consulta['id'];
+            $data_hora = $consulta["data_hora"];
+            $diagnostico = $consulta["diagnostico"];
+            $id_medico = $consulta["id_medico"];
+            $id_paciente = $consulta["id_paciente"];
+            $gravidade = $consulta["gravidade"];
+            
+            echo "
+            <div class='card mt-3'>
+                <div class='card-body'>
+                    <h5 class='card-title'>Consulta #$id - Data: $data_hora</h5>
+                    <p class='card-text'>
+                        <strong>Médico (ID):</strong> $id_medico <br>
+                        <strong>Paciente (ID):</strong> $id_paciente <br>
+                        <strong>Gravidade:</strong> $gravidade <br>
+                        <strong>Diagnóstico:</strong> $diagnostico
+                    </p>
+                    <a href='editar_consulta.php?id=$id' class='btn btn-primary'>Editar</a>
+                    <a href='excluir_consulta.php?id=$id' class='btn btn-danger'>Excluir</a>
+                </div>
+            </div>
+            ";
+        }
+    ?>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+      <script>
+        let botoes = document.querySelectorAll('.btn-danger');
+        botoes.forEach( botao => botao.addEventListener('click', function(event) {
+            let resposta = confirm('Deseja realmente apagar este registro?');
+            if (!resposta) {
+                event.preventDefault();
+            }
+        }));
+      </script>
+  </body>
 </html>
